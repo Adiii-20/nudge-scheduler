@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 33% 98%;
+    --foreground: 224 20% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 20% 12%;
+    --primary: 222 22% 12%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 18% 94%;
+    --secondary-foreground: 224 20% 16%;
+    --muted: 210 16% 94%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 170 34% 91%;
+    --accent-foreground: 180 26% 18%;
+    --destructive: 0 74% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 89%;
+    --input: 220 14% 89%;
+    --ring: 180 38% 38%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    min-height: 100%;
+    background: hsl(var(--background));
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+/* ── Mobile-first additions ── */
+
+/* Hide scrollbar for board preview */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* Animations */
+@keyframes float      { 0%,100%{transform:translateY(0) rotate(0)} 33%{transform:translateY(-8px) rotate(1deg)} 66%{transform:translateY(-4px) rotate(-1deg)} }
+@keyframes float-d    { 0%,100%{transform:translateY(0) rotate(0)} 33%{transform:translateY(-6px) rotate(-1deg)} 66%{transform:translateY(-10px) rotate(1deg)} }
+@keyframes slide-up   { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fade-in    { from{opacity:0} to{opacity:1} }
+@keyframes blob-move  { 0%,100%{border-radius:60% 40% 30% 70%/60% 30% 70% 40%} 33%{border-radius:30% 60% 70% 40%/50% 60% 30% 60%} 66%{border-radius:50% 60% 30% 60%/30% 40% 60% 50%} }
+@keyframes card-float { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-12px) rotate(.5deg)} }
+@keyframes card-float-2{0%,100%{transform:translateY(0) rotate(1deg)} 50%{transform:translateY(-8px) rotate(-.5deg)} }
+@keyframes pulse-ring { 0%{transform:scale(1);opacity:.8} 50%{transform:scale(1.05);opacity:.4} 100%{transform:scale(1);opacity:.8} }
+@keyframes shimmer    { 0%{background-position:-200% center} 100%{background-position:200% center} }
+
+.animate-slide-up      { animation: slide-up 0.6s ease-out forwards; }
+.animate-fade-in       { animation: fade-in 0.8s ease-out forwards; }
+.animate-float         { animation: float 6s ease-in-out infinite; }
+.animate-float-delayed { animation: float-d 7s ease-in-out infinite; }
+.animate-card-float    { animation: card-float 8s ease-in-out infinite; }
+.animate-card-float-2  { animation: card-float-2 9s ease-in-out infinite; }
+.animate-blob          { animation: blob-move 12s ease-in-out infinite; }
+.animate-pulse-ring    { animation: pulse-ring 3s ease-in-out infinite; }
+
+.delay-100  { animation-delay:.1s }
+.delay-200  { animation-delay:.2s }
+.delay-300  { animation-delay:.3s }
+.delay-1000 { animation-delay:1s  }
+.delay-3000 { animation-delay:3s  }
+
+/* Glass effect */
+.glass { background:rgba(255,255,255,.7); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.8); }
+
+/* Hover lifts */
+.board-card   { transition:transform .2s ease,box-shadow .2s ease; }
+.board-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(37,99,235,.12); }
+.feature-card { transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease; }
+.feature-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.08); border-color:rgba(37,99,235,.25); }
+
+/* Shimmer text */
+.text-shimmer {
+  background: linear-gradient(90deg,#2563eb 0%,#7c3aed 40%,#3b82f6 60%,#7c3aed 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  animation: shimmer 4s linear infinite;
+}
